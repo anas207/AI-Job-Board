@@ -35,12 +35,12 @@ const Home = () => {
 
   const filteredJobs = jobs.filter(job => {
     const searchLower = searchQuery.toLowerCase();
-    const matchesSearch = job.title.toLowerCase().includes(searchLower) || 
-                          job.company_name.toLowerCase().includes(searchLower);
-    
+    const matchesSearch = job.title.toLowerCase().includes(searchLower) ||
+      job.company_name.toLowerCase().includes(searchLower);
+
     if (searchQuery && !matchesSearch) return false;
     if (categoryFilter && job.category !== categoryFilter) return false;
-    
+
     if (worldwideFilter) {
       if (!job.is_worldwide) return false;
     } else if (countryFilter) {
@@ -49,6 +49,16 @@ const Home = () => {
 
     return true;
   });
+
+  const handleApply = (job) => {
+
+    if (job.apply_link.includes('@')) {
+      window.location.href = `mailto:${job.apply_link}?subject=Application for ${job.title}`;
+    } else {
+      window.open(job.apply_link.startsWith('http') ? job.apply_link : `https://${job.apply_link}`, '_blank');
+    }
+  };
+
 
   return (
     <div>
@@ -61,13 +71,13 @@ const Home = () => {
           Discover top remote opportunities in Artificial Intelligence, Machine Learning, and Data Science.
         </p>
       </section>
-      
+
       {/* Search and Filters */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-10">
         <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100 flex flex-col md:flex-row gap-4">
-          <input 
-            type="text" 
-            placeholder="Search job title or company..." 
+          <input
+            type="text"
+            placeholder="Search job title or company..."
             className="input-field flex-grow"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -80,9 +90,10 @@ const Home = () => {
             <option value="Research">Research</option>
             <option value="Other">Other</option>
           </select>
-          <select 
-            className={`input-field md:w-48 ${worldwideFilter ? 'opacity-50 cursor-not-allowed' : ''}`} 
-            value={countryFilter} 
+          <select
+            className={`input-field md:w-48 ${worldwideFilter ? 'opacity-50 cursor-not-allowed' : ''}`}
+            value={countryFilter}
+            isSearchable={true}
             onChange={(e) => setCountryFilter(e.target.value)}
             disabled={worldwideFilter}
           >
@@ -94,11 +105,11 @@ const Home = () => {
             <option value="Australia">Australia</option>
           </select>
           <label className="flex items-center space-x-2 md:w-48 px-2">
-            <input 
-              type="checkbox" 
-              className="rounded text-orange-500 focus:ring-orange-500 w-5 h-5" 
-              checked={worldwideFilter} 
-              onChange={(e) => setWorldwideFilter(e.target.checked)} 
+            <input
+              type="checkbox"
+              className="rounded text-orange-500 focus:ring-orange-500 w-5 h-5"
+              checked={worldwideFilter}
+              onChange={(e) => setWorldwideFilter(e.target.checked)}
             />
             <span className="text-sm font-medium text-gray-700">Anywhere Globally</span>
           </label>
@@ -117,12 +128,16 @@ const Home = () => {
             <div className="text-center py-12 text-gray-500">No jobs match your filters. Try adjusting them.</div>
           ) : (
             filteredJobs.map((job) => (
-              <div key={job.id} className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row gap-6 items-start sm:items-center">
+              <Link
+                to={`/job/${job.id}`}
+                key={job.id}
+                className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row gap-6 items-start sm:items-center cursor-pointer"
+              >
                 <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0 border border-gray-200 overflow-hidden">
                   {job.company_logo_url ? (
-                    <img src={job.company_logo_url} alt={job.company_name} className="w-full h-full object-cover" />
+                    <img src={job.company_logo_url} alt={job.company_name} className="w-full h-full object-scale-down" />
                   ) : (
-                    <span className="text-gray-400 text-xs text-center px-1 font-medium">{job.company_name.substring(0,2).toUpperCase()}</span>
+                    <span className="text-gray-400 text-xs text-center px-1 font-medium">{job.company_name.substring(0, 2).toUpperCase()}</span>
                   )}
                 </div>
                 <div className="flex-grow">
@@ -138,11 +153,16 @@ const Home = () => {
                 <div className="flex flex-col sm:items-end gap-3 w-full sm:w-auto mt-4 sm:mt-0">
                   <span className="text-sm text-gray-500">{new Date(job.created_at).toLocaleDateString()}</span>
                   <div className="flex gap-2 w-full sm:w-auto">
-                    <Link to={`/job/${job.id}`} className="btn-secondary flex-1 sm:flex-none text-sm py-2 px-4 text-center">View Job</Link>
-                    <Link to={`/job/${job.id}`} className="btn-primary flex-1 sm:flex-none text-sm py-2 px-4 text-center">Apply Now</Link>
+                    <span className="btn-secondary flex-1 sm:flex-none text-sm py-2 px-4 text-center">View Job</span>
+                    <button
+                      onClick={(e) => { e.preventDefault(); handleApply(job); }}
+                      className="btn-primary flex-1 sm:flex-none text-sm py-2 px-4 text-center"
+                    >
+                      Apply Now
+                    </button>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))
           )}
         </div>
