@@ -33,4 +33,8 @@ A niche **remote job board** dedicated to hiring top AI talent worldwide.
 
 
 ## 📂 Project Structure
-<img width="1022" height="823" alt="image" src="https://github.com/user-attachments/assets/92119778-bd2d-4205-bcf0-2ba3d536a26c" />
+src/
+├── components/     # Reusable components
+├── pages/          # Main pages (JobBoard, Dashboard, etc.)
+├── supabase.js     # Supabase client
+└── App.jsx
