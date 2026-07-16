@@ -1,16 +1,36 @@
-# React + Vite
+# AI Job Board
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A niche **remote job board** dedicated to hiring top AI talent worldwide.
 
-Currently, two official plugins are available:
+![AI Job Board] 
+<img width="1901" height="905" alt="image" src="https://github.com/user-attachments/assets/2fae8108-ff89-4e0e-9384-ac11710b8e3f" />
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Browse high-quality AI remote jobs
+- Advanced filters (Global / Country, Job Category)
+- Clean and modern UI/UX
+- Employer dashboard to post and manage jobs
+- Job detail pages with full description
+- Apply via external link or email
 
-## Expanding the Oxlint configuration
+## 🛠 Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+- **Frontend**: React JS (Vite) + JavaScript
+- **Styling**: Tailwind CSS
+- **Backend**: Supabase (Authentication + Database + Storage)
+- **Routing**: React Router
+
+## 🚀 Live Demo
+
+[View Live App](https://ai-job-board-bay.vercel.app/)  
+
+## 📸 Screenshots
+<img width="1900" height="906" alt="image" src="https://github.com/user-attachments/assets/4ea0c942-f955-456e-8cd7-438eb65ce72d" />
+<img width="1897" height="808" alt="image" src="https://github.com/user-attachments/assets/ce07e42d-56ee-42ec-b579-c77f95604bf4" />
+<img width="1901" height="906" alt="image" src="https://github.com/user-attachments/assets/5fe23000-dd1e-47e3-bb85-3f70e8d8aff7" />
+
+
+## 📂 Project Structure
+<img width="1022" height="823" alt="image" src="https://github.com/user-attachments/assets/92119778-bd2d-4205-bcf0-2ba3d536a26c" />
