@@ -13,7 +13,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
+    <header className="bg-orange-80 border-b border-gray-300 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
@@ -28,7 +28,7 @@ const Navbar = () => {
             <Link to="/" className="text-gray-600 hover:text-orange-500 font-medium transition-colors">
               Browse Jobs
             </Link>
-            <Link to="#" className="text-gray-600 hover:text-orange-500 font-medium transition-colors">
+            <Link to="#" className="text-gray-600 hover:text-orange-500 font-medium transition-colors ">
               About Us
             </Link>
             <Link to="#" className="text-gray-600 hover:text-orange-500 font-medium transition-colors">
@@ -50,7 +50,7 @@ const Navbar = () => {
                 >
                   <LogOut className="h-5 w-5" />
                 </button>
-                <Link to="/employer/post-job" className="btn-primary">
+                <Link to="/employer/post-job" className="px-6 py-3  text-white font-medium rounded-lg transition-all bg-orange-500">
                   Post A Job
                 </Link>
               </>
@@ -59,7 +59,7 @@ const Navbar = () => {
                 <Link to="/login" className="text-gray-600 hover:text-gray-900 font-medium">
                   Login
                 </Link>
-                <Link to="/login" className="btn-primary">
+                <Link to="/login" className="px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded-lg transition-all">
                   Post A Job
                 </Link>
               </>

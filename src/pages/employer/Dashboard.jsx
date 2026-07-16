@@ -34,7 +34,7 @@ const Dashboard = () => {
 
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this job posting?')) return;
-    
+
     try {
       const { error } = await supabase.from('jobs').delete().eq('id', id);
       if (error) throw error;
@@ -101,9 +101,9 @@ const Dashboard = () => {
                         <Link to={`/job/${job.id}`} className="text-gray-400 hover:text-blue-500 transition-colors" title="View">
                           <Eye className="h-5 w-5" />
                         </Link>
-                        <button className="text-gray-400 hover:text-orange-500 transition-colors" title="Edit">
+                        {/*<button className="text-gray-400 hover:text-orange-500 transition-colors" title="Edit">
                           <Edit className="h-5 w-5" />
-                        </button>
+                        </button>*/}
                         <button onClick={() => handleDelete(job.id)} className="text-gray-400 hover:text-red-500 transition-colors" title="Delete">
                           <Trash2 className="h-5 w-5" />
                         </button>

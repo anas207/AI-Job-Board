@@ -14,7 +14,7 @@ const Login = () => {
     e.preventDefault();
     setError(null);
     setLoading(true);
-    
+
     try {
       const { error } = await signIn({ email, password });
       if (error) throw error;
@@ -33,13 +33,13 @@ const Login = () => {
           <h2 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h2>
           <p className="text-gray-500">Sign in to manage your job postings</p>
         </div>
-        
+
         {error && (
           <div className="mb-6 p-4 bg-red-50 text-red-700 rounded-lg text-sm border border-red-100">
             {error}
           </div>
         )}
-        
+
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label className="label" htmlFor="email">Email address</label>
@@ -63,7 +63,7 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          
+
           <button
             type="submit"
             disabled={loading}
@@ -72,7 +72,7 @@ const Login = () => {
             {loading ? 'Signing in...' : 'Sign In'}
           </button>
         </form>
-        
+
         <div className="mt-6 text-center text-sm text-gray-500">
           Don't have an employer account?{' '}
           <Link to="/signup" className="text-orange-600 hover:text-orange-500 font-medium">
