@@ -1,8 +1,8 @@
 import React from 'react';
-import '../src/index.css';
-import { AuthProvider } from '../src/context/AuthContext';
-import Navbar from '../src/components/layout/Navbar';
-import Footer from '../src/components/layout/Footer';
+import '../index.css';
+import { AuthProvider } from '../context/AuthContext';
+import Navbar from '../components/layout/Navbar';
+import Footer from '../components/layout/Footer';
 
 export const metadata = {
   title: 'AI Job Board',

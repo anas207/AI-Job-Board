@@ -3,9 +3,9 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { UploadCloud } from 'lucide-react';
-import { supabase } from '../../../src/lib/supabase';
-import { useAuth } from '../../../src/context/AuthContext';
-import ProtectedRoute from '../../../src/components/auth/ProtectedRoute';
+import { supabase } from '../../../lib/supabase';
+import { useAuth } from '../../../context/AuthContext';
+import ProtectedRoute from '../../../components/auth/ProtectedRoute';
 
 const PostJobContent = () => {
   const { user } = useAuth();

@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import { supabase } from '../../../src/lib/supabase';
+import { supabase } from '../../../lib/supabase';
 
 const JobDetails = () => {
   const { id } = useParams();
