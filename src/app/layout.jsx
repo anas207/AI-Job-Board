@@ -7,6 +7,9 @@ import Footer from '../components/layout/Footer';
 export const metadata = {
   title: 'AI Job Board',
   description: 'Find the Best AI Remote Jobs in Artificial Intelligence, Machine Learning, and Data Science.',
+  icons: {
+    icon: '/Favicon1.svg',
+  },
 };
 
 export default function RootLayout({ children }) {
