@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { UploadCloud } from 'lucide-react';
-import { supabase } from '../../lib/supabase';
-import { useAuth } from '../../context/AuthContext';
+"use client";
 
-const PostJob = () => {
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { UploadCloud } from 'lucide-react';
+import { supabase } from '../../../src/lib/supabase';
+import { useAuth } from '../../../src/context/AuthContext';
+import ProtectedRoute from '../../../src/components/auth/ProtectedRoute';
+
+const PostJobContent = () => {
   const { user } = useAuth();
   const [formData, setFormData] = useState({
     title: '',
@@ -19,7 +22,7 @@ const PostJob = () => {
   const [logo, setLogo] = useState(null);
   const [loading, setLoading] = useState(false);
   
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -83,7 +86,7 @@ const PostJob = () => {
       if (insertError) throw insertError;
 
       alert('Job posted successfully!');
-      navigate('/employer/dashboard');
+      router.push('/employer/dashboard');
     } catch (err) {
       console.error(err);
       alert('Error posting job: ' + err.message);
@@ -197,4 +200,10 @@ const PostJob = () => {
   );
 };
 
-export default PostJob;
+export default function PostJob() {
+  return (
+    <ProtectedRoute>
+      <PostJobContent />
+    </ProtectedRoute>
+  );
+}

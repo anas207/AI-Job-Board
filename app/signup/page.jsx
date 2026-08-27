@@ -1,6 +1,9 @@
+"use client";
+
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '../../src/context/AuthContext';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -8,7 +11,7 @@ const Signup = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const { signUp } = useAuth();
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,9 +21,8 @@ const Signup = () => {
     try {
       const { error } = await signUp({ email, password });
       if (error) throw error;
-      // Note: Supabase requires email confirmation by default. If it's disabled, user logs in immediately.
       alert('Signup successful! You can now log in.');
-      navigate('/login');
+      router.push('/login');
     } catch (err) {
       setError(err.message);
     } finally {
@@ -78,7 +80,7 @@ const Signup = () => {
         
         <div className="mt-6 text-center text-sm text-gray-500">
           Already have an account?{' '}
-          <Link to="/login" className="text-orange-600 hover:text-orange-500 font-medium">
+          <Link href="/login" className="text-orange-600 hover:text-orange-500 font-medium">
             Sign in
           </Link>
         </div>

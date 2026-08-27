@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    "./index.html",
+    "./app/**/*.{js,ts,jsx,tsx}",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
@@ -11,6 +11,9 @@ export default {
         serif: ['"Source Serif 4"', 'serif'],
       },
       colors: {
+        background: '#FAF3EB',
+        white: '#FFFEFC',
+
         orange: {
           50: '#fff7ed',
           80: '#FAF3EB',

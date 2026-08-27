@@ -1,6 +1,9 @@
+"use client";
+
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '../../src/context/AuthContext';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -8,7 +11,7 @@ const Login = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const { signIn } = useAuth();
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,7 +21,7 @@ const Login = () => {
     try {
       const { error } = await signIn({ email, password });
       if (error) throw error;
-      navigate('/employer/dashboard');
+      router.push('/employer/dashboard');
     } catch (err) {
       setError(err.message);
     } finally {
@@ -75,7 +78,7 @@ const Login = () => {
 
         <div className="mt-6 text-center text-sm text-gray-500">
           Don't have an employer account?{' '}
-          <Link to="/signup" className="text-orange-600 hover:text-orange-500 font-medium">
+          <Link href="/signup" className="text-orange-600 hover:text-orange-500 font-medium">
             Sign up
           </Link>
         </div>

@@ -1,6 +1,9 @@
+"use client";
+
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { supabase } from '../lib/supabase';
+import { useParams } from 'next/navigation';
+import Link from 'next/link';
+import { supabase } from '../../../src/lib/supabase';
 
 const JobDetails = () => {
   const { id } = useParams();
@@ -48,7 +51,7 @@ const JobDetails = () => {
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <Link to="/" className="text-orange-600 hover:text-orange-700 font-medium mb-8 inline-flex items-center">
+      <Link href="/" className="text-orange-600 hover:text-orange-700 font-medium mb-8 inline-flex items-center">
         &larr; Back to all jobs
       </Link>
 

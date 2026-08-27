@@ -1,9 +1,18 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
+"use client";
+
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '../../context/AuthContext';
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!loading && !user) {
+      router.replace('/login');
+    }
+  }, [user, loading, router]);
 
   if (loading) {
     return (
@@ -14,7 +23,7 @@ const ProtectedRoute = ({ children }) => {
   }
 
   if (!user) {
-    return <Navigate to="/login" />;
+    return null;
   }
 
   return children;

@@ -1,7 +1,9 @@
+"use client";
+
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { supabase } from '../lib/supabase';
-import { COUNTRIES } from '../Constants/countries';
+import Link from 'next/link';
+import { supabase } from '../src/lib/supabase';
+import { COUNTRIES } from '../src/Constants/countries';
 
 const Home = () => {
   const [jobs, setJobs] = useState([]);
@@ -17,8 +19,6 @@ const Home = () => {
   const [countryDropdownOpen, setCountryDropdownOpen] = useState(false);
   const [countrySearch, setCountrySearch] = useState('');
   const countryDropdownRef = useRef(null);
-
-
 
   const filteredCountries = COUNTRIES.filter(c =>
     c.toLowerCase().includes(countrySearch.toLowerCase())
@@ -74,14 +74,12 @@ const Home = () => {
   });
 
   const handleApply = (job) => {
-
     if (job.apply_link.includes('@')) {
       window.location.href = `mailto:${job.apply_link}?subject=Application for ${job.title}`;
     } else {
       window.open(job.apply_link.startsWith('http') ? job.apply_link : `https://${job.apply_link}`, '_blank');
     }
   };
-
 
   return (
     <div>
@@ -223,7 +221,7 @@ const Home = () => {
           ) : (
             filteredJobs.map((job) => (
               <Link
-                to={`/job/${job.id}`}
+                href={`/job/${job.id}`}
                 key={job.id}
                 className="bg-[#FFFEFC] rounded-xl p-6 border border-gray-50 shadow-md hover:shadow-md transition-all flex flex-col sm:flex-row gap-6 items-start sm:items-center cursor-pointer"
               >

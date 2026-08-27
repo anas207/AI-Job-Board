@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { PlusCircle, Edit, Trash2, Eye } from 'lucide-react';
-import { supabase } from '../../lib/supabase';
-import { useAuth } from '../../context/AuthContext';
+"use client";
 
-const Dashboard = () => {
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { PlusCircle, Trash2, Eye } from 'lucide-react';
+import { supabase } from '../../../src/lib/supabase';
+import { useAuth } from '../../../src/context/AuthContext';
+import ProtectedRoute from '../../../src/components/auth/ProtectedRoute';
+
+const DashboardContent = () => {
   const { user } = useAuth();
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -51,7 +54,7 @@ const Dashboard = () => {
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Employer Dashboard</h1>
           <p className="text-gray-600">Manage your AI job postings</p>
         </div>
-        <Link to="/employer/post-job" className="btn-primary flex items-center gap-2">
+        <Link href="/employer/post-job" className="btn-primary flex items-center gap-2">
           <PlusCircle className="h-5 w-5" />
           <span>Post A Job</span>
         </Link>
@@ -98,12 +101,9 @@ const Dashboard = () => {
                     </td>
                     <td className="py-4 px-6 text-right">
                       <div className="flex justify-end gap-3">
-                        <Link to={`/job/${job.id}`} className="text-gray-400 hover:text-blue-500 transition-colors" title="View">
+                        <Link href={`/job/${job.id}`} className="text-gray-400 hover:text-blue-500 transition-colors" title="View">
                           <Eye className="h-5 w-5" />
                         </Link>
-                        {/*<button className="text-gray-400 hover:text-orange-500 transition-colors" title="Edit">
-                          <Edit className="h-5 w-5" />
-                        </button>*/}
                         <button onClick={() => handleDelete(job.id)} className="text-gray-400 hover:text-red-500 transition-colors" title="Delete">
                           <Trash2 className="h-5 w-5" />
                         </button>
@@ -120,4 +120,10 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default function Dashboard() {
+  return (
+    <ProtectedRoute>
+      <DashboardContent />
+    </ProtectedRoute>
+  );
+}
